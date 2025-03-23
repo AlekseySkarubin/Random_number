@@ -1,0 +1,24 @@
+.game-card {
+    height: 100vh;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.card {
+    margin-top: 20px;
+}
+
+.card-title {
+    font-size: 1.5rem;
+}
+
+.btn-group {
+    margin-top: 20px;
+}
+
+.btn-link {
+    margin-top: 10px;
+}
