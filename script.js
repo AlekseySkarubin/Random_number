@@ -30,21 +30,9 @@ function numberToText(n) {
 let minValue, maxValue, answerNumber, orderNumber, gameRun;
 
 function startNewGame() {
-    minValue = 0;
-    maxValue = 100;
-    orderNumber = 1;
-    gameRun = true;
-
-    answerNumber = Math.floor((minValue + maxValue) / 2);
-    document.getElementById('orderNumberField').innerText = orderNumber;
-    updateQuestion();
-}
-
-function startGame() {
     minValue = parseInt(document.getElementById('minValueInput').value) || 0;
     maxValue = parseInt(document.getElementById('maxValueInput').value) || 100;
 
-    // Тернарный оператор для ограничения диапазона
     minValue = (minValue < -999) ? -999 : (minValue > 999 ? 999 : minValue);
     maxValue = (maxValue < -999) ? -999 : (maxValue > 999 ? 999 : maxValue);
 
@@ -77,7 +65,7 @@ function updateQuestion() {
 
 document.addEventListener('DOMContentLoaded', startNewGame);
 
-document.getElementById('btnStart').addEventListener('click', startGame);
+document.getElementById('btnStart').addEventListener('click', startNewGame);
 
 document.getElementById('btnRetry').addEventListener('click', startNewGame);
 
