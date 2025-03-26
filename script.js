@@ -30,14 +30,30 @@ function numberToText(n) {
 let minValue, maxValue, answerNumber, orderNumber, gameRun;
 
 function startNewGame() {
-    minValue = 0;
-    maxValue = 100;
+    document.getElementById('rangeInputContainer').style.display = 'block';
+    document.getElementById('gameContainer').style.display = 'none';
+}
+
+function startGame() {
+    minValue = parseInt(document.getElementById('minValueInput').value) || 0;
+    maxValue = parseInt(document.getElementById('maxValueInput').value) || 100;
+
+    minValue = (minValue < -999) ? -999 : (minValue > 999 ? 999 : minValue);
+    maxValue = (maxValue < -999) ? -999 : (maxValue > 999 ? 999 : maxValue);
+
+    if (minValue > maxValue) {
+        [minValue, maxValue] = [maxValue, minValue];
+    }
+
     orderNumber = 1;
     gameRun = true;
 
     answerNumber = Math.floor((minValue + maxValue) / 2);
-    orderNumberField.innerText = orderNumber;
+    document.getElementById('orderNumberField').innerText = orderNumber;
     updateQuestion();
+
+    document.getElementById('rangeInputContainer').style.display = 'none';
+    document.getElementById('gameContainer').style.display = 'block';
 }
 
 function updateQuestion() {
@@ -49,13 +65,15 @@ function updateQuestion() {
     const randomPhrase = questionPhrases[Math.floor(Math.random() * questionPhrases.length)];
     const answerText = numberToText(answerNumber);
     if (answerText.length < 20) {
-        answerField.innerText = `${randomPhrase} ${answerText}?`;
+        document.getElementById('answerField').innerText = `${randomPhrase} ${answerText}?`;
     } else {
-        answerField.innerText = `${randomPhrase} ${answerNumber}?`;
+        document.getElementById('answerField').innerText = `${randomPhrase} ${answerNumber}?`;
     }
 }
 
 document.addEventListener('DOMContentLoaded', startNewGame);
+
+document.getElementById('btnStart').addEventListener('click', startGame);
 
 document.getElementById('btnRetry').addEventListener('click', startNewGame);
 
@@ -66,13 +84,13 @@ document.getElementById('btnOver').addEventListener('click', function () {
             const answerPhrase = (phraseRandom === 1) ?
                 `Вы загадали неправильное число!\n\u{1F914}` :
                 `Я сдаюсь..\n\u{1F92F}`;
-            answerField.innerText = answerPhrase;
+            document.getElementById('answerField').innerText = answerPhrase;
             gameRun = false;
         } else {
             minValue = answerNumber + 1;
             answerNumber = Math.floor((minValue + maxValue) / 2);
             orderNumber++;
-            orderNumberField.innerText = orderNumber;
+            document.getElementById('orderNumberField').innerText = orderNumber;
             updateQuestion();
         }
     }
@@ -85,13 +103,13 @@ document.getElementById('btnLess').addEventListener('click', function () {
             const answerPhrase = (phraseRandom === 1) ?
                 `Вы загадали неправильное число!\n\u{1F914}` :
                 `Я сдаюсь..\n\u{1F92F}`;
-            answerField.innerText = answerPhrase;
+            document.getElementById('answerField').innerText = answerPhrase;
             gameRun = false;
         } else {
             maxValue = answerNumber - 1;
             answerNumber = Math.floor((minValue + maxValue) / 2);
             orderNumber++;
-            orderNumberField.innerText = orderNumber;
+            document.getElementById('orderNumberField').innerText = orderNumber;
             updateQuestion();
         }
     }
@@ -104,7 +122,7 @@ document.getElementById('btnEqual').addEventListener('click', function () {
             `Это было легко!\n\u{1F60E}`,
             `Бинго!\n\u{1F60E}`
         ];
-        answerField.innerText = successPhrases[Math.floor(Math.random() * successPhrases.length)];
+        document.getElementById('answerField').innerText = successPhrases[Math.floor(Math.random() * successPhrases.length)];
         gameRun = false;
     }
 });
