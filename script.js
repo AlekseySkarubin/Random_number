@@ -33,7 +33,6 @@ function startNewGame() {
     minValue = parseInt(document.getElementById('minValueInput').value) || 0;
     maxValue = parseInt(document.getElementById('maxValueInput').value) || 100;
 
-    // Проверяем и ограничиваем значения с использованием тернарного оператора и alert
     if (minValue < -999) {
         alert("Диапазон числа должен быть от -999 до 999");
         minValue = -999;
@@ -63,17 +62,21 @@ function startNewGame() {
 }
 
 function updateQuestion() {
-    const questionPhrases = [
-        "Вы загадали число",
-        "Мне кажется, это число",
-        "Позвольте предположить, это число"
-    ];
-    const randomPhrase = questionPhrases[Math.floor(Math.random() * questionPhrases.length)];
-    const answerText = numberToText(answerNumber);
-    if (answerText.length < 20) {
-        document.getElementById('answerField').innerText = `${randomPhrase} ${answerText}?`;
+    if (answerNumber < -999 || answerNumber > 999) {
+        document.getElementById('answerField').innerText = "Ну это за пределами правил!";
     } else {
-        document.getElementById('answerField').innerText = `${randomPhrase} ${answerNumber}?`;
+        const questionPhrases = [
+            "Вы загадали число",
+            "Мне кажется, это число",
+            "Позвольте предположить, это число"
+        ];
+        const randomPhrase = questionPhrases[Math.floor(Math.random() * questionPhrases.length)];
+        const answerText = numberToText(answerNumber);
+        if (answerText.length < 20) {
+            document.getElementById('answerField').innerText = `${randomPhrase} ${answerText}?`;
+        } else {
+            document.getElementById('answerField').innerText = `${randomPhrase} ${answerNumber}?`;
+        }
     }
 }
 
