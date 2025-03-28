@@ -33,8 +33,11 @@ function startNewGame() {
     minValue = parseInt(document.getElementById('minValueInput').value) || 0;
     maxValue = parseInt(document.getElementById('maxValueInput').value) || 100;
 
-    minValue = (minValue < -999) ? -999 : (minValue > 999 ? 999 : minValue);
-    maxValue = (maxValue < -999) ? -999 : (maxValue > 999 ? 999 : maxValue);
+    // Проверяем и ограничиваем значения с использованием тернарного оператора
+    minValue = (minValue < -999) ? (prompt("Диапазон числа должен быть от -999 до 999"), -999) :
+               (minValue > 999 ? (prompt("Диапазон числа должен быть от -999 до 999"), 999) : minValue);
+    maxValue = (maxValue < -999) ? (prompt("Диапазон числа должен быть от -999 до 999"), -999) :
+               (maxValue > 999 ? (prompt("Диапазон числа должен быть от -999 до 999"), 999) : maxValue);
 
     if (minValue > maxValue) {
         [minValue, maxValue] = [maxValue, minValue];
