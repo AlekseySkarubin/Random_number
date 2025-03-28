@@ -29,24 +29,32 @@ function numberToText(n) {
 
 let minValue, maxValue, answerNumber, orderNumber, gameRun;
 
+function showAlert(message) {
+    document.getElementById('alertMessage').innerText = message;
+    let alertBox = new bootstrap.Collapse(document.getElementById('alertBox'), {
+        toggle: false
+    });
+    alertBox.show();
+}
+
 function startNewGame() {
     minValue = parseInt(document.getElementById('minValueInput').value) || 0;
     maxValue = parseInt(document.getElementById('maxValueInput').value) || 100;
 
     if (minValue < -999 || minValue > 999) {
-        alert("Диапазон числа должен быть от -999 до 999");
+        showAlert("Диапазон числа должен быть от -999 до 999");
         gameRun = false;
         return; // Прекращаем выполнение
     }
 
     if (maxValue < -999 || maxValue > 999) {
-        alert("Диапазон числа должен быть от -999 до 999");
+        showAlert("Диапазон числа должен быть от -999 до 999");
         gameRun = false;
         return; // Прекращаем выполнение
     }
 
     if (minValue > maxValue) {
-        alert("Кажется, диапазон задан не совсем логично...");
+        showAlert("Кажется, диапазон задан не совсем логично...");
         [minValue, maxValue] = [maxValue, minValue];
     }
 
