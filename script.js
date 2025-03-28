@@ -35,18 +35,18 @@ function startNewGame() {
 
     if (minValue < -999) {
         alert("Диапазон числа должен быть от -999 до 999");
-        minValue = -999;
+        return; // Прекращаем выполнение
     } else if (minValue > 999) {
         alert("Диапазон числа должен быть от -999 до 999");
-        minValue = 999;
+        return; // Прекращаем выполнение
     }
 
     if (maxValue < -999) {
         alert("Диапазон числа должен быть от -999 до 999");
-        maxValue = -999;
+        return; // Прекращаем выполнение
     } else if (maxValue > 999) {
         alert("Диапазон числа должен быть от -999 до 999");
-        maxValue = 999;
+        return; // Прекращаем выполнение
     }
 
     if (minValue > maxValue) {
