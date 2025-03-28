@@ -46,6 +46,7 @@ function startNewGame() {
     }
 
     if (minValue > maxValue) {
+        alert("Кажется, диапазон задан не совсем логично...");
         [minValue, maxValue] = [maxValue, minValue];
     }
 
@@ -60,8 +61,9 @@ function startNewGame() {
 function updateQuestion() {
     if (!gameRun) return; // Прекращаем выполнение, если игра не активна
 
-    if (answerNumber < -999 || answerNumber > 999) {
-        document.getElementById('answerField').innerText = "Ну это за пределами правил!";
+    if (answerNumber < minValue || answerNumber > maxValue) {
+        document.getElementById('answerField').innerText = "Это выходит за рамки договора!";
+        gameRun = false; // Останавливаем игру
     } else {
         const questionPhrases = [
             "Вы загадали число",
