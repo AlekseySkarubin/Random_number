@@ -1,6 +1,6 @@
 function numberToText(n) {
     const units = ["", "один", "два", "три", "четыре", "пять", "шесть", "семь", "восемь", "девять"];
-    const teens = ["десять", "одиннадцать", "двенадцать", "тринадцать", "четырнадцать", "пятнадцать", "шестнадцать", "семнадцать", "восемнадцать", "девятнадцать"];
+    const teens = ["десять", "одиннадцать", "двенадцать", "тринадцать", "четырнадцать", "пятнадцать", "шестнадцать", "семнадцать", "восемьнадцать", "девятнадцать"];
     const tens = ["", "десять", "двадцать", "тридцать", "сорок", "пятьдесят", "шестьдесят", "семьдесят", "восемьдесят", "девяносто"];
     const hundreds = ["", "сто", "двести", "триста", "четыреста", "пятьсот", "шестьсот", "семьсот", "восемьсот", "девятьсот"];
 
@@ -61,22 +61,17 @@ function startNewGame() {
 function updateQuestion() {
     if (!gameRun) return; // Прекращаем выполнение, если игра не активна
 
-    if (answerNumber < minValue || answerNumber > maxValue) {
-        document.getElementById('answerField').innerText = "Это выходит за рамки договора!";
-        gameRun = false; // Останавливаем игру
+    const questionPhrases = [
+        "Вы загадали число",
+        "Мне кажется, это число",
+        "Позвольте предположить, это число"
+    ];
+    const randomPhrase = questionPhrases[Math.floor(Math.random() * questionPhrases.length)];
+    const answerText = numberToText(answerNumber);
+    if (answerText.length < 20) {
+        document.getElementById('answerField').innerText = `${randomPhrase} ${answerText}?`;
     } else {
-        const questionPhrases = [
-            "Вы загадали число",
-            "Мне кажется, это число",
-            "Позвольте предположить, это число"
-        ];
-        const randomPhrase = questionPhrases[Math.floor(Math.random() * questionPhrases.length)];
-        const answerText = numberToText(answerNumber);
-        if (answerText.length < 20) {
-            document.getElementById('answerField').innerText = `${randomPhrase} ${answerText}?`;
-        } else {
-            document.getElementById('answerField').innerText = `${randomPhrase} ${answerNumber}?`;
-        }
+        document.getElementById('answerField').innerText = `${randomPhrase} ${answerNumber}?`;
     }
 }
 
@@ -90,11 +85,7 @@ document.getElementById('btnOver').addEventListener('click', function () {
     if (!gameRun) return; // Прекращаем выполнение, если игра не активна
 
     if (minValue >= maxValue) {
-        const phraseRandom = Math.round(Math.random());
-        const answerPhrase = (phraseRandom === 1) ?
-            `Вы загадали неправильное число!\n\u{1F914}` :
-            `Я сдаюсь..\n\u{1F92F}`;
-        document.getElementById('answerField').innerText = answerPhrase;
+        document.getElementById('answerField').innerText = "Это выходит за рамки договора!";
         gameRun = false;
     } else {
         minValue = answerNumber + 1;
@@ -109,11 +100,7 @@ document.getElementById('btnLess').addEventListener('click', function () {
     if (!gameRun) return; // Прекращаем выполнение, если игра не активна
 
     if (minValue >= maxValue) {
-        const phraseRandom = Math.round(Math.random());
-        const answerPhrase = (phraseRandom === 1) ?
-            `Вы загадали неправильное число!\n\u{1F914}` :
-            `Я сдаюсь..\n\u{1F92F}`;
-        document.getElementById('answerField').innerText = answerPhrase;
+        document.getElementById('answerField').innerText = "Это выходит за рамки договора!";
         gameRun = false;
     } else {
         maxValue = answerNumber - 1;
