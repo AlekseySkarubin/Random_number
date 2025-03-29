@@ -7,59 +7,78 @@
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans" rel="stylesheet">
     <link rel="stylesheet" href="style.css" type="text/css"/>
+    <style>
+        table {
+            width: 100%;
+            margin: 20px 0;
+        }
+        td {
+            vertical-align: top;
+            padding: 10px 0;
+        }
+    </style>
 </head>
 <body>
-<div class="container">
-    
-    <div class="row justify-content-center mt-3">
-        <div class="col-md-4">
-            <div class="card text-center">
-                <div class="card-header">
-                    <h4>Введите диапазон чисел</h4>
-                </div>
-                <div class="card-body">
-                    <div class="form-group">
-                        <label for="minValueInput">Минимальное значение:</label>
-                        <input type="number" class="form-control" id="minValueInput" value="0">
-                    </div>
-                    <div class="form-group">
-                        <label for="maxValueInput">Максимальное значение:</label>
-                        <input type="number" class="form-control" id="maxValueInput" value="100">
-                    </div>
-                    <button class="btn btn-primary btn-block" id="btnStart">Начать игру</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    
-    <div class="row game-card align-items-center mt-3">
-        <div class="col col-md-4 offset-md-4">
-            <div class="card text-center">
-                <div class="card-header">
-                    <p class="m-0">Вопрос №<span id="orderNumberField">1</span></p>
-                </div>
-                <div class="card-body">
-                    <div class="row no-gutters">
-                        <div class="col">
-                            <h3 class="card-title m-0"><span id="answerField">Вы загадали число 50?</span></h3>
+<table>
+    <tr>
+        <td>
+            
+            <div class="container">
+                <div class="row justify-content-center mt-3">
+                    <div class="col-md-4">
+                        <div class="card text-center">
+                            <div class="card-header">
+                                <h4>Введите диапазон чисел</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="minValueInput">Минимальное значение:</label>
+                                    <input type="number" class="form-control" id="minValueInput" value="0">
+                                </div>
+                                <div class="form-group">
+                                    <label for="maxValueInput">Максимальное значение:</label>
+                                    <input type="number" class="form-control" id="maxValueInput" value="100">
+                                </div>
+                                <button class="btn btn-primary btn-block" id="btnStart">Начать игру</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="card-body">
-                    <div class="btn-group">
-                        <button class="btn btn-info" id="btnLess">Меньше</button>&nbsp;&nbsp;&nbsp;
-                        <button class="btn btn-success btn-lg" id="btnEqual">Верно!</button>&nbsp;&nbsp;&nbsp;
-                        <button class="btn btn-info" id="btnOver">Больше</button>&nbsp;&nbsp;&nbsp;
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            
+            <div class="row game-card align-items-center mt-3">
+                <div class="col col-md-4 offset-md-4">
+                    <div class="card text-center">
+                        <div class="card-header">
+                            <p class="m-0">Вопрос №<span id="orderNumberField">1</span></p>
+                        </div>
+                        <div class="card-body">
+                            <div class="row no-gutters">
+                                <div class="col">
+                                    <h3 class="card-title m-0"><span id="answerField">Вы загадали число 50?</span></h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="btn-group">
+                                <button class="btn btn-info" id="btnLess">Меньше</button>&nbsp;&nbsp;&nbsp;
+                                <button class="btn btn-success btn-lg" id="btnEqual">Верно!</button>&nbsp;&nbsp;&nbsp;
+                                <button class="btn btn-info" id="btnOver">Больше</button>&nbsp;&nbsp;&nbsp;
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn btn-link" id="btnRetry">Заново</button>
+                        </div>
                     </div>
                 </div>
-                <div class="card-footer">
-                    <button class="btn btn-link" id="btnRetry">Заново</button>
-                </div>
             </div>
-        </div>
-    </div>
-</div>
+        </td>
+    </tr>
+</table>
 
 <script src="script.js"></script>
 </body>
