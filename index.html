@@ -8,16 +8,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans" rel="stylesheet">
     <link rel="stylesheet" href="style.css" type="text/css"/>
     <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Open Sans', sans-serif;
+        }
         table {
             width: 100%;
-            margin: 0;
+            max-width: 600px; /* Фиксированная максимальная ширина таблицы */
+            margin: 0 auto; /* Центрирование таблицы */
+            border-collapse: collapse; /* Убираем промежутки между ячейками */
         }
         td {
             vertical-align: top;
             padding: 0;
         }
         .container {
-            margin-bottom: 10px; /* Уменьшенный отступ между блоками */
+            margin-bottom: 10px; /* Небольшой отступ между блоками */
         }
     </style>
 </head>
@@ -27,8 +34,8 @@
         <td>
             
             <div class="container">
-                <div class="row justify-content-center mt-3">
-                    <div class="col-md-4">
+                <div class="row justify-content-center">
+                    <div class="col-md-12">
                         <div class="card text-center">
                             <div class="card-header">
                                 <h4>Введите диапазон чисел</h4>
@@ -53,28 +60,30 @@
     <tr>
         <td>
             
-            <div class="row game-card align-items-center mt-3">
-                <div class="col col-md-4 offset-md-4">
-                    <div class="card text-center">
-                        <div class="card-header">
-                            <p class="m-0">Вопрос №<span id="orderNumberField">1</span></p>
-                        </div>
-                        <div class="card-body">
-                            <div class="row no-gutters">
-                                <div class="col">
-                                    <h3 class="card-title m-0"><span id="answerField">Вы загадали число 50?</span></h3>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-12">
+                        <div class="card text-center">
+                            <div class="card-header">
+                                <p class="m-0">Вопрос №<span id="orderNumberField">1</span></p>
+                            </div>
+                            <div class="card-body">
+                                <div class="row no-gutters">
+                                    <div class="col">
+                                        <h3 class="card-title m-0"><span id="answerField">Вы загадали число 50?</span></h3>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="btn-group">
-                                <button class="btn btn-info" id="btnLess">Меньше</button>&nbsp;&nbsp;&nbsp;
-                                <button class="btn btn-success btn-lg" id="btnEqual">Верно!</button>&nbsp;&nbsp;&nbsp;
-                                <button class="btn btn-info" id="btnOver">Больше</button>&nbsp;&nbsp;&nbsp;
+                            <div class="card-body">
+                                <div class="btn-group">
+                                    <button class="btn btn-info" id="btnLess">Меньше</button>&nbsp;&nbsp;&nbsp;
+                                    <button class="btn btn-success btn-lg" id="btnEqual">Верно!</button>&nbsp;&nbsp;&nbsp;
+                                    <button class="btn btn-info" id="btnOver">Больше</button>&nbsp;&nbsp;&nbsp;
+                                </div>
                             </div>
-                        </div>
-                        <div class="card-footer">
-                            <button class="btn btn-link" id="btnRetry">Заново</button>
+                            <div class="card-footer">
+                                <button class="btn btn-link" id="btnRetry">Заново</button>
+                            </div>
                         </div>
                     </div>
                 </div>
