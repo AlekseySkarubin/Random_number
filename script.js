@@ -17,7 +17,9 @@ function numberToText(n) {
     let ten = Math.floor((n % 100) / 10);
     let unit = n % 10;
 
-    result += hundreds[hundred] ? hundreds[hundred] + " " : "";
+    if (hundred > 0) {
+        result += hundreds[hundred] + " ";
+    }
     if (ten === 1) {
         result += teens[unit];
     } else {
@@ -84,14 +86,12 @@ function updateQuestion() {
     const randomPhrase = questionPhrases[Math.floor(Math.random() * questionPhrases.length)];
 
     const answerText = numberToText(answerNumber);
-    const questionText = `${randomPhrase} ${answerText}?`;
-    const numericQuestionText = `${randomPhrase} ${answerNumber}?`;
 
     // Проверка длины текстового представления числа
-    if (questionText.length < 20) {
-        document.getElementById('answerField').innerText = questionText;
+    if (answerText.length < 20) {
+        document.getElementById('answerField').innerText = `${randomPhrase} ${answerText}?`;
     } else {
-        document.getElementById('answerField').innerText = numericQuestionText;
+        document.getElementById('answerField').innerText = `${randomPhrase} ${answerNumber}?`;
     }
 }
 
