@@ -33,20 +33,23 @@ function startNewGame() {
     minValue = parseInt(document.getElementById('minValueInput').value);
     maxValue = parseInt(document.getElementById('maxValueInput').value);
 
-    // Проверяем, если значения не были введены, устанавливаем их в 0
-    if (isNaN(minValue)) minValue = 0;
-    if (isNaN(maxValue)) maxValue = 0;
+    // Проверяем, были ли введены корректные значения
+    if (isNaN(minValue) || isNaN(maxValue)) {
+        alert("Пожалуйста, введите корректные значения для диапазона.");
+        gameRun = false;
+        return;
+    }
 
     if (minValue < -999 || minValue > 999) {
         alert("Диапазон числа должен быть от -999 до 999");
         gameRun = false;
-        return; // Прекращаем выполнение
+        return;
     }
 
     if (maxValue < -999 || maxValue > 999) {
         alert("Диапазон числа должен быть от -999 до 999");
         gameRun = false;
-        return; // Прекращаем выполнение
+        return;
     }
 
     if (minValue > maxValue) {
@@ -63,7 +66,7 @@ function startNewGame() {
 }
 
 function updateQuestion() {
-    if (!gameRun) return; // Прекращаем выполнение, если игра не активна
+    if (!gameRun) return;
 
     const questionPhrases = [
         "Вы загадали число",
@@ -86,7 +89,7 @@ document.getElementById('btnStart').addEventListener('click', startNewGame);
 document.getElementById('btnRetry').addEventListener('click', startNewGame);
 
 document.getElementById('btnOver').addEventListener('click', function () {
-    if (!gameRun) return; // Прекращаем выполнение, если игра не активна
+    if (!gameRun) return;
 
     if (minValue >= maxValue) {
         document.getElementById('answerField').innerText = "Это выходит за рамки договора!";
@@ -101,7 +104,7 @@ document.getElementById('btnOver').addEventListener('click', function () {
 });
 
 document.getElementById('btnLess').addEventListener('click', function () {
-    if (!gameRun) return; // Прекращаем выполнение, если игра не активна
+    if (!gameRun) return;
 
     if (minValue >= maxValue) {
         document.getElementById('answerField').innerText = "Это выходит за рамки договора!";
@@ -116,7 +119,7 @@ document.getElementById('btnLess').addEventListener('click', function () {
 });
 
 document.getElementById('btnEqual').addEventListener('click', function () {
-    if (!gameRun) return; // Прекращаем выполнение, если игра не активна
+    if (!gameRun) return;
 
     const successPhrases = [
         `Я всегда угадываю\n\u{1F60E}`,
