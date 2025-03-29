@@ -17,7 +17,7 @@ function numberToText(n) {
     let ten = Math.floor((n % 100) / 10);
     let unit = n % 10;
 
-    result += hundreds[hundred];
+    result += hundreds[hundred] ? hundreds[hundred] + " " : "";
     if (ten === 1) {
         result += (result ? " " : "") + teens[unit];
     } else {
@@ -80,9 +80,13 @@ function updateQuestion() {
         "Позвольте предположить, это число"
     ];
     const randomPhrase = questionPhrases[Math.floor(Math.random() * questionPhrases.length)];
+
     const answerText = numberToText(answerNumber);
-    if (answerText.length < 20) {
-        document.getElementById('answerField').innerText = `${randomPhrase} ${answerText}?`;
+    const questionText = `${randomPhrase} ${answerText}?`;
+
+    // Проверка длины текстового представления числа
+    if (questionText.length < 20) {
+        document.getElementById('answerField').innerText = questionText;
     } else {
         document.getElementById('answerField').innerText = `${randomPhrase} ${answerNumber}?`;
     }
