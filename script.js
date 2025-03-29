@@ -1,4 +1,3 @@
-// Функция для преобразования числовых значений в текстовый формат на русском языке
 function numberToText(n) {
     const units = ["", "один", "два", "три", "четыре", "пять", "шесть", "семь", "восемь", "девять"];
     const teens = ["десять", "одиннадцать", "двенадцать", "тринадцать", "четырнадцать", "пятнадцать", "шестнадцать", "семнадцать", "восемьнадцать", "девятнадцать"];
@@ -17,12 +16,16 @@ function numberToText(n) {
     let ten = Math.floor((n % 100) / 10);
     let unit = n % 10;
 
-    result += hundreds[hundred];
+    if (hundred > 0) {
+        result += hundreds[hundred] + " ";
+    }
     if (ten === 1) {
-        result += (result ? " " : "") + teens[unit];
+        result += teens[unit];
     } else {
-        result += (result ? " " : "") + tens[ten];
-        result += (result ? " " : "") + units[unit];
+        result += tens[ten];
+        if (unit > 0) {
+            result += (tens[ten] ? " " : "") + units[unit];
+        }
     }
 
     return result.trim();
@@ -30,20 +33,16 @@ function numberToText(n) {
 
 let minValue, maxValue, answerNumber, orderNumber, gameRun;
 
-// Функция для начала новой игры и инициализации всех начальных параметров
 function startNewGame() {
-    // Получаем значения диапазона от пользователя
     minValue = parseInt(document.getElementById('minValueInput').value, 10);
     maxValue = parseInt(document.getElementById('maxValueInput').value, 10);
 
-    // Проверяем, на корректность ввода диапазона
     if (isNaN(minValue) || isNaN(maxValue)) {
         alert("Пожалуйста, введите корректные значения для диапазона.");
         gameRun = false;
         return;
     }
 
-    // Проверка на допустимые границы диапазона
     if (minValue < -999 || minValue > 999) {
         alert("Диапазон числа должен быть от -999 до 999");
         gameRun = false;
@@ -56,23 +55,21 @@ function startNewGame() {
         return;
     }
 
-    // Проверка на логичность диапазона, если minValue больше maxValue
     if (minValue > maxValue) {
         alert("Кажется, диапазон задан не совсем логично...");
         [minValue, maxValue] = [maxValue, minValue];
     }
 
-    // Инициализируем начальные параметры игры
     orderNumber = 1;
     gameRun = true;
+
     answerNumber = Math.floor((minValue + maxValue) / 2);
     document.getElementById('orderNumberField').innerText = orderNumber;
     updateQuestion();
 }
 
-// Функция для обновления вопроса, задаваемого пользователю
 function updateQuestion() {
-    if (!gameRun) return; // Проверяем, активна ли игра
+    if (!gameRun) return;
 
     const questionPhrases = [
         "Вы загадали число",
@@ -80,6 +77,7 @@ function updateQuestion() {
         "Позвольте предположить, это число"
     ];
     const randomPhrase = questionPhrases[Math.floor(Math.random() * questionPhrases.length)];
+
     const answerText = numberToText(answerNumber);
     if (answerText.length < 20) {
         document.getElementById('answerField').innerText = `${randomPhrase} ${answerText}?`;
@@ -88,20 +86,15 @@ function updateQuestion() {
     }
 }
 
-// Событие, которое запускает новую игру при загрузке страницы
 document.addEventListener('DOMContentLoaded', startNewGame);
 
-// Событие для кнопки "Начать игру"
 document.getElementById('btnStart').addEventListener('click', startNewGame);
 
-// Событие для кнопки "Заново"
 document.getElementById('btnRetry').addEventListener('click', startNewGame);
 
-// Событие для кнопки "Больше"
 document.getElementById('btnOver').addEventListener('click', function () {
-    if (!gameRun) return; // Проверяем, активна ли игра
+    if (!gameRun) return;
 
-    // Проверка на выход значений за пределы диапазона
     if (minValue >= maxValue) {
         document.getElementById('answerField').innerText = "Это выходит за рамки договора!";
         gameRun = false;
@@ -114,11 +107,9 @@ document.getElementById('btnOver').addEventListener('click', function () {
     }
 });
 
-// Событие для кнопки "Меньше"
 document.getElementById('btnLess').addEventListener('click', function () {
-    if (!gameRun) return; // Проверяем, активна ли игра
+    if (!gameRun) return;
 
-    // Проверка на выход значений за пределы диапазона
     if (minValue >= maxValue) {
         document.getElementById('answerField').innerText = "Это выходит за рамки договора!";
         gameRun = false;
@@ -131,9 +122,8 @@ document.getElementById('btnLess').addEventListener('click', function () {
     }
 });
 
-// Событие для кнопки "Верно!"
 document.getElementById('btnEqual').addEventListener('click', function () {
-    if (!gameRun) return; // Проверяем, активна ли игра
+    if (!gameRun) return;
 
     const successPhrases = [
         `Я всегда угадываю\n\u{1F60E}`,
