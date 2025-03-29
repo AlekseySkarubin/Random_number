@@ -13,84 +13,60 @@
             padding: 0;
             font-family: 'Open Sans', sans-serif;
         }
-        table {
-            width: 100%;
-            max-width: 600px; /* Фиксированная максимальная ширина таблицы */
-            margin: 0 auto; /* Центрирование таблицы */
-            border-collapse: collapse; /* Убираем промежутки между ячейками */
+        .content {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 10px;
         }
-        td {
-            vertical-align: top;
-            padding: 0;
-        }
-        .container {
-            margin-bottom: 10px; /* Небольшой отступ между блоками */
+        .card {
+            margin-bottom: 20px; /* Устанавливаем отступ между карточками */
         }
     </style>
 </head>
 <body>
-<table>
-    <tr>
-        <td>
-            
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-12">
-                        <div class="card text-center">
-                            <div class="card-header">
-                                <h4>Введите диапазон чисел</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="form-group">
-                                    <label for="minValueInput">Минимальное значение:</label>
-                                    <input type="number" class="form-control" id="minValueInput" value="0">
-                                </div>
-                                <div class="form-group">
-                                    <label for="maxValueInput">Максимальное значение:</label>
-                                    <input type="number" class="form-control" id="maxValueInput" value="100">
-                                </div>
-                                <button class="btn btn-primary btn-block" id="btnStart">Начать игру</button>
-                            </div>
-                        </div>
-                    </div>
+<div class="content">
+    
+    <div class="card text-center">
+        <div class="card-header">
+            <h4>Введите диапазон чисел</h4>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label for="minValueInput">Минимальное значение:</label>
+                <input type="number" class="form-control" id="minValueInput" value="0">
+            </div>
+            <div class="form-group">
+                <label for="maxValueInput">Максимальное значение:</label>
+                <input type="number" class="form-control" id="maxValueInput" value="100">
+            </div>
+            <button class="btn btn-primary btn-block" id="btnStart">Начать игру</button>
+        </div>
+    </div>
+
+    
+    <div class="card text-center">
+        <div class="card-header">
+            <p class="m-0">Вопрос №<span id="orderNumberField">1</span></p>
+        </div>
+        <div class="card-body">
+            <div class="row no-gutters">
+                <div class="col">
+                    <h3 class="card-title m-0"><span id="answerField">Вы загадали число 50?</span></h3>
                 </div>
             </div>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-12">
-                        <div class="card text-center">
-                            <div class="card-header">
-                                <p class="m-0">Вопрос №<span id="orderNumberField">1</span></p>
-                            </div>
-                            <div class="card-body">
-                                <div class="row no-gutters">
-                                    <div class="col">
-                                        <h3 class="card-title m-0"><span id="answerField">Вы загадали число 50?</span></h3>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="btn-group">
-                                    <button class="btn btn-info" id="btnLess">Меньше</button>&nbsp;&nbsp;&nbsp;
-                                    <button class="btn btn-success btn-lg" id="btnEqual">Верно!</button>&nbsp;&nbsp;&nbsp;
-                                    <button class="btn btn-info" id="btnOver">Больше</button>&nbsp;&nbsp;&nbsp;
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                <button class="btn btn-link" id="btnRetry">Заново</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        </div>
+        <div class="card-body">
+            <div class="btn-group">
+                <button class="btn btn-info" id="btnLess">Меньше</button>&nbsp;&nbsp;&nbsp;
+                <button class="btn btn-success btn-lg" id="btnEqual">Верно!</button>&nbsp;&nbsp;&nbsp;
+                <button class="btn btn-info" id="btnOver">Больше</button>&nbsp;&nbsp;&nbsp;
             </div>
-        </td>
-    </tr>
-</table>
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-link" id="btnRetry">Заново</button>
+        </div>
+    </div>
+</div>
 
 <script src="script.js"></script>
 </body>
