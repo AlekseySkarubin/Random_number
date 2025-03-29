@@ -30,10 +30,10 @@ function numberToText(n) {
 let minValue, maxValue, answerNumber, orderNumber, gameRun;
 
 function startNewGame() {
-    minValue = parseInt(document.getElementById('minValueInput').value);
-    maxValue = parseInt(document.getElementById('maxValueInput').value);
+    minValue = parseInt(document.getElementById('minValueInput').value, 10);
+    maxValue = parseInt(document.getElementById('maxValueInput').value, 10);
 
-    // Проверяем, были ли введены корректные значения
+    // Проверяем на корректность ввода
     if (isNaN(minValue) || isNaN(maxValue)) {
         alert("Пожалуйста, введите корректные значения для диапазона.");
         gameRun = false;
