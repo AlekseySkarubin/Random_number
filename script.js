@@ -43,17 +43,8 @@ function startNewGame() {
         return;
     }
 
-    if (minValue < -999 || minValue > 999) {
-        alert("Диапазон числа должен быть от -999 до 999");
-        gameRun = false;
-        return;
-    }
-
-    if (maxValue < -999 || maxValue > 999) {
-        alert("Диапазон числа должен быть от -999 до 999");
-        gameRun = false;
-        return;
-    }
+    if (minValue < -999) minValue = -999;
+    if (maxValue > 999) maxValue = 999;
 
     if (minValue > maxValue) {
         alert("Кажется, диапазон задан не совсем логично...");
@@ -79,8 +70,10 @@ function updateQuestion() {
     const randomPhrase = questionPhrases[Math.floor(Math.random() * questionPhrases.length)];
 
     const answerText = numberToText(answerNumber);
-    if (answerText.length < 20) {
-        document.getElementById('answerField').innerText = `${randomPhrase} ${answerText}?`;
+    const fullQuestion = `${randomPhrase} ${answerText}?`;
+
+    if (fullQuestion.length < 20) {
+        document.getElementById('answerField').innerText = fullQuestion;
     } else {
         document.getElementById('answerField').innerText = `${randomPhrase} ${answerNumber}?`;
     }
