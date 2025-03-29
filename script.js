@@ -19,10 +19,12 @@ function numberToText(n) {
 
     result += hundreds[hundred] ? hundreds[hundred] + " " : "";
     if (ten === 1) {
-        result += (result ? " " : "") + teens[unit];
+        result += teens[unit];
     } else {
-        result += (result ? " " : "") + tens[ten];
-        result += (result ? " " : "") + units[unit];
+        result += tens[ten];
+        if (unit > 0) {
+            result += (tens[ten] ? " " : "") + units[unit];
+        }
     }
 
     return result.trim();
@@ -83,12 +85,13 @@ function updateQuestion() {
 
     const answerText = numberToText(answerNumber);
     const questionText = `${randomPhrase} ${answerText}?`;
+    const numericQuestionText = `${randomPhrase} ${answerNumber}?`;
 
     // Проверка длины текстового представления числа
     if (questionText.length < 20) {
         document.getElementById('answerField').innerText = questionText;
     } else {
-        document.getElementById('answerField').innerText = `${randomPhrase} ${answerNumber}?`;
+        document.getElementById('answerField').innerText = numericQuestionText;
     }
 }
 
