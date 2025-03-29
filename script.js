@@ -30,8 +30,12 @@ function numberToText(n) {
 let minValue, maxValue, answerNumber, orderNumber, gameRun;
 
 function startNewGame() {
-    minValue = parseInt(document.getElementById('minValueInput').value) || 0;
-    maxValue = parseInt(document.getElementById('maxValueInput').value) || 100;
+    minValue = parseInt(document.getElementById('minValueInput').value);
+    maxValue = parseInt(document.getElementById('maxValueInput').value);
+
+    // Проверяем, если значения не были введены, устанавливаем их в 0
+    if (isNaN(minValue)) minValue = 0;
+    if (isNaN(maxValue)) maxValue = 0;
 
     if (minValue < -999 || minValue > 999) {
         alert("Диапазон числа должен быть от -999 до 999");
