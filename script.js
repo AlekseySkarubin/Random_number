@@ -79,8 +79,11 @@ function updateQuestion() {
     const randomPhrase = questionPhrases[Math.floor(Math.random() * questionPhrases.length)];
 
     const answerText = numberToText(answerNumber);
-    if (answerText.length < 20) {
-        document.getElementById('answerField').innerText = `${randomPhrase} ${answerText}?`;
+    const fullQuestion = `${randomPhrase} ${answerText}?`;
+
+    // Проверка длины полного вопроса, а не только текстового представления числа
+    if (fullQuestion.length < 20) {
+        document.getElementById('answerField').innerText = fullQuestion;
     } else {
         document.getElementById('answerField').innerText = `${randomPhrase} ${answerNumber}?`;
     }
